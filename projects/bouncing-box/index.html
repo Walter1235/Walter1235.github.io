@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		.box {
+			width: 70px;
+			height: 70px;
+			background-color: orange;
+			font-size: 300%;
+			text-align: center;
+			transform: rotate(20deg);
+			display: circle;
+			position: absolute;
+			top: 100px;
+			left: 0px;
+		}
+		body{
+			background-color: black;
+		}
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict'
+			/* global jQuery */
+
+			// jQuery stuff setup for you
+			var box = jQuery('.box');
+			var boardWidth = jQuery('.board').width();
+			//var boardHeight = jQuery('.board').height();
+			var boardHeight = 800;
+			// TODO 2
+			var position;
+			var tposition;      
+			var points;         
+			var tspeed;
+			var speed;
+			var direction     
+			var tdirection  
+			position = 0;
+			tposition = 500;
+			points = 0;
+			speed = 10;
+			tspeed = 5;
+			direction = 1;
+			tdirection = 1;
+			
+			box.css('left', position);     
+			box.text(points);              
+			
+			var rot = 2000;
+			
+			console.log(boardHeight)
+			function update() {
+			    position += speed * direction;    
+			    tposition += tspeed * tdirection;
+			    
+			    if(position > boardWidth) {
+			        direction = -1;
+			    }
+			    if(tposition > boardHeight) {
+			        tdirection = -1;
+			    
+			    	console.log("bounced bottom")
+			    }
+			     if(tposition <= 0) {
+			        tdirection = 1;
+			    	console.log("bounced top")
+			    }
+			     if (position <= 0) {
+			        direction = 1;
+			    }
+			    
+			    box.css('left', position);      
+				box.css('top', tposition);
+				rot += 5;
+				box.css('transform', 'rotate(' + rot + 'deg)');
+			}    
+			
+			function handleBoxClick() {
+				// TODO 4 / 5
+				points += 1;          
+				box.text(points);     
+				tspeed += 3         
+				speed += 3;    
+			};
+
+
+			//this executes the update function code every 50 milliseconds
+			setInterval(update, 50);
+			// this executes the handleBoxClick function code every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>

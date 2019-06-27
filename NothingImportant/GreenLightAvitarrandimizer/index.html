@@ -1,0 +1,82 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Avitar Randumizer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<style>
+	
+		body{
+		    Background-color: black;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="box"></div>
+	<script>
+	function pickColor() {
+		var numCR = Math.floor(Math.random()*10);
+		switch (numCR) {
+			case 0: return "red";
+			case 1: return "orange";
+			case 2: return "yellow";
+			case 3: return "green";
+			case 4: return "blue";
+			case 5: return "purple";
+			case 6: return "cyan";
+			case 7: return "white";
+			case 8: return "grey";
+			case 9: return "pink";
+			
+		}
+
+	}
+	
+	(function(){
+		var size = 64;
+		var color = pickColor();
+		
+    	var grid = [];
+    	for (var i = 0; i < 5; i++) {
+    		grid.push([]);
+    		for (var j = 0; j < 5; j++) {
+    			grid[i].push(0);
+    		}
+    	}
+    	
+        for (var i = 0; i < 5; i++) {
+    		for (var j = 0; j < 3; j++) {
+		        var numR = Math.floor(Math.random()*2)
+				grid[i][j] = numR;
+				grid[i][4-j] = numR;
+    		}
+        }
+        
+        
+       
+        for (var y = 0; y < 5; y++) {
+    		for (var x = 0; x < 5; x++) {
+    			var $div = $('<div>')
+    			$div.css('position', 'absolute');
+		        $div.css('background-color', color);
+		        $div.css('left', x*size);
+		        $div.css('top', y*size);
+		        
+		        $div.css('width', size);
+		        $div.css('height', size);
+		        
+    			if (grid[y][x] === 0){
+    				$div.css('background-color', "black")
+    			}
+		        $('body').append($div);
+    			
+    		}
+    	}
+    		
+    	console.log(grid);
+    	
+    	
+	})();
+	</script>
+</html>

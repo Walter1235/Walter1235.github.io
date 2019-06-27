@@ -1,0 +1,39 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Avitar Randumizer</title>
+	<script src="jquery.min.js">
+	</script>
+	<style>
+		.box {
+			width: 70px;
+			height: 70px;
+			background-color: white;
+			display: box;
+			position: absolute;
+			top: 100px;
+			left: 0px;
+		}
+		body{
+		    Background-color: black;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="box"></div>
+	<script>
+	(function(){
+    	var box = $(".box");
+    	var color = "red";
+    	box.css('background-color', color)
+    	var number = Math.floor(Math.random()*10);
+    	console.log (number);
+    	
+    	if(number=0){
+    	    color="red";
+    	}
+	})();
+	</script>
+</html>
